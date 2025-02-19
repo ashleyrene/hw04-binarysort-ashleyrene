@@ -94,13 +94,18 @@ int compare_vectors(const void* a, const void* b) {
     struct vector *vec2 = (struct vector *)b;
     
     // Compare x-coordinates first
-    if (vec1->x != vec2->x) return vec1->x - vec2->x;
+    if (vec1->x > vec2->x) return 1;
+    if (vec1->x < vec2->x) return -1;
     
     // If x-coordinates are equal, compare y-coordinates
-    if (vec1->y != vec2->y) return vec1->y - vec2->y;
+    if (vec1->y > vec2->y) return 1;
+    if (vec1->y < vec2->y) return -1;
     
     // If both x- and y-coordinates are equal, compare z-coordinates
-    return vec1->z - vec2->z;
+    if (vec1->z > vec2->z) return 1;
+    if (vec1->z < vec2->z) return -1;
+
+    return 0;
 }
 
 /* The fourth function calls qsort with the appropriate
